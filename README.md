@@ -93,8 +93,8 @@ Content-Type: application/json
 ### Docker 快速启动
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/ai-detector.git
-cd ai-detector
+git clone https://github.com/hoyo0210/aigc-detector.git
+cd aigc-detector
 
 # 配置环境变量
 cp backend/.env.example backend/.env
