@@ -18,8 +18,8 @@
 
 ### 2. 克隆项目
 ```bash
-git clone https://github.com/your-username/ai-detector.git
-cd ai-detector
+git clone https://github.com/hoyo0210/aigc-detector.git
+cd aigc-detector
 ```
 
 ### 3. 配置环境变量
@@ -120,7 +120,7 @@ fly deploy
 curl -fsSL https://get.docker.com | bash
 
 # 2. 克隆项目
-git clone https://github.com/your-username/ai-detector.git
+git clone https://github.com/hoyo0210/aigc-detector.git
 
 # 3. 配置环境变量
 cp backend/.env.example backend/.env
@@ -140,8 +140,8 @@ sudo apt update && sudo apt install -y docker.io
 
 # 3. 配置安全组 (开放80, 443, 8000端口)
 # 4. 部署应用
-git clone https://github.com/your-username/ai-detector.git
-cd ai-detector
+git clone https://github.com/hoyo0210/aigc-detector.git
+cd aigc-detector
 docker-compose up -d
 ```
 
@@ -155,8 +155,8 @@ git add .
 git commit -m "Initial commit"
 
 # 添加远程仓库
-git remote add origin https://github.com/your-username/ai-detector.git
-git push -u origin main
+git remote add origin https://github.com/hoyo0210/aigc-detector.git
+git push -u origin master
 ```
 
 ### 2. 添加GitHub Actions
@@ -178,8 +178,8 @@ jobs:
     - name: Build and push Docker image
       run: |
         echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker build -t your-username/ai-detector:${{ github.sha }} .
-        docker push your-username/ai-detector:${{ github.sha }}
+        docker build -t hoyo0210/aigc-detector:${{ github.sha }} .
+        docker push hoyo0210/aigc-detector:${{ github.sha }}
 ```
 
 ### 3. 配置GitHub Pages
