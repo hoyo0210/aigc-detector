@@ -13,6 +13,7 @@ export interface DetectResponse {
 }
 
 export interface TraceMark {
+  id: string;
   start: number;
   end: number;
   type: string;

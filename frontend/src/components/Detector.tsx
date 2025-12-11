@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Input, Card, Alert, Spin, Progress, Typography, Divider, Tag, Modal, Grid } from 'antd';
+import { Button, Input, Card, Alert, Progress, Typography, Divider, Tag, Modal, Grid } from 'antd';
 import axios from 'axios';
 import { DetectResult, MarkTracesResponse } from '../types';
 
@@ -96,7 +96,6 @@ export default function Detector() {
   const screens = useBreakpoint();
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [marking, setMarking] = useState(false);
   const [result, setResult] = useState<DetectResult | null>(null);
   const [markedResult, setMarkedResult] = useState<MarkTracesResponse | null>(null);
   const [error, setError] = useState('');
@@ -150,15 +149,12 @@ export default function Detector() {
   const onMarkTraces = async () => {
     if (!text.trim()) return;
 
-    setMarking(true);
     try {
       const resp = await axios.post('/api/mark-traces', { text });
       setMarkedResult(resp.data);
     } catch (e: any) {
       console.error('标记AI痕迹失败:', e);
       // 不显示错误，因为这不是主要功能
-    } finally {
-      setMarking(false);
     }
   };
 
@@ -220,10 +216,6 @@ export default function Detector() {
       'low': 'red'
     };
     return colorMap[confidence] || 'default';
-  };
-
-  const handleTraceClick = (trace: any) => {
-    setSelectedTrace({ trace, visible: true });
   };
 
   const handleModalClose = () => {
