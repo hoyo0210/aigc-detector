@@ -13,6 +13,7 @@ def test_health_ok_and_does_not_leak_secret():
     body = res.json()
     assert body["status"] == "ok"
     assert "dashscope_configured" in body
+    assert "version" in body
     assert "api_key" not in body
     assert "DASHSCOPE" not in res.text
 

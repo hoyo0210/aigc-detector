@@ -89,8 +89,9 @@ open http://localhost:8080   # 前端（宿主机默认 8080 → 容器 Nginx 80
 说明：Compose 通过 `backend/.env` 注入密钥；前端容器内 Nginx 将 `/api` 反代到 `backend:8000`。若本机 8080 也被占用，启动前设置 `FRONTEND_PORT=8090` 等。
 ### 安全与可观测（发布最小集）
 - **密钥**：只放在 `backend/.env` 或编排 secrets；仓库与镜像构建上下文忽略 `.env`（见 `.dockerignore`）
-- **健康检查**：`GET /api/health` → `{ "status": "ok", "dashscope_configured": true|false }`（不返回密钥）
-- **CORS**：`CORS_ORIGINS`（逗号分隔），默认仅本地 Vite 源
+- **健康检查**：`GET /api/health` → `{ "status", "dashscope_configured", "version" }`（不返回密钥）
+- **CI**：`.github/workflows/ci.yml`（backend pytest + frontend build）；镜像推送见 `docker-deploy.yml`（仅 `master`/`main`/tag，先测后推 GHCR）
+- **CORS**：`CORS_ORIGINS`（逗号分隔），默认含本地 Compose/Vite 源
 - **限流**：`RATE_LIMIT_PER_MINUTE`（默认 60，按 IP；`/api/health` 豁免）
 
 ### 云平台部署

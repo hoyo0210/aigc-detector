@@ -60,6 +60,7 @@ def health():
     return {
         "status": "ok",
         "dashscope_configured": bool(settings.qwen_api_key.strip()),
+        "version": settings.app_version,
     }
 
 
