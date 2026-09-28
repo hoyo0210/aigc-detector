@@ -7,7 +7,7 @@
   1. PR/push runs backend pytest (and fails the check on failure) — **Pass** (CI run success)
   2. Image push to GHCR happens on `master` only, after tests — **Pass** (publish job after backend-test)
   3. `GET /api/health` includes non-secret `version` (git sha or env) — **Pass** (code + tests)
-  4. A accepts with 「可发布」or equivalent — **Pending**
+  4. A accepts with 「可发布」or equivalent — **Pass** (2026-09-29 02:10 CST)
 - Approver A: hoyo0210
 - Constraints: no secrets in git; public repo; GITHUB_TOKEN for GHCR
 - Key assumptions: GitHub Actions enabled; packages:write via GITHUB_TOKEN sufficient
