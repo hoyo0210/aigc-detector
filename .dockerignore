@@ -1,0 +1,28 @@
+# Secrets & local env — never bake into images
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.local
+
+# VCS / IDE
+.git
+.gitignore
+.cursor
+.vscode
+.idea
+
+# Dependencies & build
+**/node_modules
+**/__pycache__
+**/*.pyc
+**/.venv
+**/venv
+**/dist
+**/build
+mobile/
+
+# Docs / local clutter not needed at runtime
+*.md
+!README.md
+PUBLISH_CHECKLIST.md

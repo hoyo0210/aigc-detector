@@ -111,7 +111,6 @@ htmlcov/
 .tox/
 
 # Docker
-.dockerignore
 docker-compose.override.yml
 
 # Local development

@@ -61,17 +61,20 @@ docker build -t ai-detector .
 docker run -p 8000:8000 -e DASHSCOPE_API_KEY=your_key ai-detector
 ```
 
-### Docker Compose部署
+### Docker Compose部署（推荐）
 ```bash
-# 构建并启动
-docker-compose up -d
+cp backend/.env.example backend/.env
+# 编辑 backend/.env，设置 DASHSCOPE_API_KEY=sk-...
 
-# 查看日志
-docker-compose logs -f
+./deploy.sh
+# 或: docker compose up -d --build
 
-# 停止服务
-docker-compose down
+# 前端默认 http://localhost:8080 （FRONTEND_PORT 可改）
+# 后端健康检查 http://localhost:8000/api/health
+# 停止: docker compose down
 ```
+
+Compose 使用 `backend/.env`；前端 Nginx 将 `/api` 反代到服务名 `backend:8000`。
 
 ## ☁️ 云平台部署
 

@@ -1,7 +1,10 @@
 from pydantic import BaseModel, Field
 
+# 最小文本长度限制
+MIN_TEXT_LENGTH = 500
+
 class DetectRequest(BaseModel):
-    text: str = Field(..., min_length=1, max_length=8000)
+    text: str = Field(..., min_length=MIN_TEXT_LENGTH, max_length=8000, description=f"文本内容，至少需要{MIN_TEXT_LENGTH}字")
 
 class DetectResult(BaseModel):
     label: str  # human | ai | uncertain
@@ -14,19 +17,3 @@ class DetectResult(BaseModel):
 
 class DetectResponse(BaseModel):
     result: DetectResult
-
-class DetectRequest(BaseModel):
-    text: str = Field(..., min_length=1, max_length=8000)
-
-class TraceMark(BaseModel):
-    id: str    # 唯一标识符
-    start: int  # 开始位置
-    end: int    # 结束位置
-    type: str   # 标记类型 (如: repetition, perfect_structure, formal_language等)
-    reason: str # 标记原因
-
-class MarkTracesResponse(BaseModel):
-    original_text: str
-    marked_text: str  # 带有HTML标记的文本
-    traces: list[TraceMark]  # 具体的标记列表
-    explanation: str

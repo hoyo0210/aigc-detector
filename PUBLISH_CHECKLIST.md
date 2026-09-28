@@ -30,9 +30,9 @@
 ## 🌐 部署选项
 
 ### 本地部署
-- [x] Docker Compose 启动脚本
-- [x] 环境变量配置说明
-- [x] 端口映射配置
+- [x] Docker Compose 启动脚本（`./deploy.sh` / `docker compose`）
+- [x] 环境变量配置说明（`backend/.env`）
+- [x] 端口映射配置（后端 8000；前端默认 8080→80，可用 `FRONTEND_PORT`）
 
 ### 云平台部署
 - [ ] GitHub Actions 自动化构建
@@ -50,13 +50,13 @@
 ## 🔐 安全配置
 
 - [x] API密钥安全管理
+- [x] CORS 策略配置（`CORS_ORIGINS`）
+- [x] 请求限流建议（`RATE_LIMIT_PER_MINUTE`，实现为进程内按 IP 限流）
 - [ ] HTTPS 配置指南
-- [ ] CORS 策略配置
-- [ ] 请求限流建议
 
 ## 📊 监控和运维
 
-- [ ] 健康检查端点
+- [x] 健康检查端点（`GET /api/health`）
 - [ ] 日志收集配置
 - [ ] 性能监控建议
 - [ ] 备份策略
@@ -68,28 +68,31 @@
 - [ ] 性能优化建议
 - [ ] 扩展开发指南
 
-## 🎯 发布前检查
+## 🎯 发布前检查（本周期 In）
 
-- [ ] 敏感信息已移除
-- [ ] 测试用例通过
-- [ ] 生产环境配置验证
-- [ ] 文档链接正确
-- [ ] 许可证信息完整
+- [x] 敏感信息已移除（`.env` / `.venv` ignore；`.dockerignore`；tracked 无长 `sk-`）
+- [x] 最小测试通过（`backend/tests/test_health_security.py`）
+- [x] Compose 生产向路径验证（health + 前端 8080 + Nginx `/api`）
+- [x] 文档链接正确（README ↔ DEPLOYMENT）
+- [x] 许可证信息完整（MIT `LICENSE`）
+- [x] 冒烟：`POST /api/detect` 经 `:8000` 与 `:8080/api` 均成功返回 label/score
 
 ## 📦 分发渠道
 
-- [ ] GitHub 仓库创建
-- [ ] Docker Hub 镜像推送
-- [ ] PyPI 包发布 (如果适用)
-- [ ] NPM 包发布 (如果适用)
+- [x] GitHub 仓库创建（`hoyo0210/aigc-detector`）
+- [ ] Docker Hub 镜像推送（Out：非本周期门闩）
+- [ ] PyPI 包发布 (如果适用)（Out）
+- [ ] NPM 包发布 (如果适用)（Out）
 
 ## 🔗 外部集成
 
-- [ ] DashScope API 集成
-- [ ] 第三方服务配置
-- [ ] CDN 配置
-- [ ] 域名配置
+- [x] DashScope API 集成（冒烟已调用）
+- [ ] 第三方服务配置（Out）
+- [ ] CDN 配置（Out）
+- [ ] 域名配置（Out）
 
 ## 🎉 发布就绪
 
-当所有检查项完成后，项目就可以发布了！
+本周期门闩 = Charter 五项成功标准。下列云/监控/多端专题保持未勾，属 Out，不阻塞「可自托管发布」。
+
+**Approver 验收：** 回复「可发布」即关闭增量 3 / Monitor→Close 候选。

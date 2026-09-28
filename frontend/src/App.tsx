@@ -8,13 +8,14 @@ function App() {
   const screens = useBreakpoint();
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh', margin: 0, padding: 0 }}>
       <Header
         style={{
           color: 'white',
           fontSize: screens.xs ? '14px' : screens.sm ? '16px' : '20px',
           textAlign: 'center',
-          padding: screens.xs ? '0 8px' : screens.sm ? '0 12px' : '0 16px'
+          padding: screens.xs ? '0 8px' : screens.sm ? '0 12px' : '0 16px',
+          margin: 0
         }}
       >
         AI 文本检测助手
